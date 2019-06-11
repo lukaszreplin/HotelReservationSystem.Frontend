@@ -1,7 +1,23 @@
+<mat-toolbar color="primary" class="fixed-header">
+  <mat-toolbar-row>
+    <span><img src="" style="width:50px;"></span>
+    <a mat-button routerLink="/main" routerLinkActive="active">Strona główna</a>
+    <a mat-button routerLink="/my-reservations">Moje rezerwacje</a>
+    <a mat-button routerLink="/rooms">Pokoje</a>
+    <a mat-button routerLink="/reservations">Rezerwacje</a>
+    <a mat-button routerLink="/login">Login</a>
+  </mat-toolbar-row>
+</mat-toolbar>
+
 <div id="lock" class="modal fade" role="dialog" style="z-index: 9999;" data-backdrop="static" data-keyboard="false">
   <div class="modal-dialog-spec" role="document">
       <app-loading></app-loading>
   </div>
 </div>
+<main>
+  <mat-card style="margin: 40px;">
+      <router-outlet></router-outlet>
+  </mat-card>
+  
+</main>
 
-<router-outlet></router-outlet>
