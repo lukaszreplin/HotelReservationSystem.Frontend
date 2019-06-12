@@ -3,6 +3,7 @@ import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { Room } from 'src/app/models/room';
 import { HttpClient } from '@angular/common/http';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material/dialog';
+import { AddRoomDialogComponent } from './dialogs/add-room-dialog/add-room-dialog.component';
 
 @Component({
   selector: 'app-rooms',
@@ -40,6 +41,19 @@ export class RoomsComponent implements OnInit {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
+
+    const dialogRef = this.dialog.open(AddRoomDialogComponent, dialogConfig);
+
+    dialogRef.afterClosed().subscribe(
+        data => {
+          console.info(data.roomNumber);
+          this.httpClient.post('http://localhost:64780/api/Room', { 'Number': data.roomNumber, 'Floor': data.roomFloor }).subscribe((res: Room[]) => {
+          this.dataSource = new MatTableDataSource<Room>(res);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+          })
+        }
+    );    
   }
 
 }

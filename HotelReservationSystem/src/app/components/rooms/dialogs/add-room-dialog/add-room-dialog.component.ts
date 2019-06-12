@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'app-add-room-dialog',
@@ -7,9 +9,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddRoomDialogComponent implements OnInit {
 
-  constructor() { }
+  form: FormGroup;
+  roomNumber: string;
+  roomFloor: number;
+
+  constructor(private fb: FormBuilder,
+    private dialogRef: MatDialogRef<AddRoomDialogComponent>) { 
+    }
 
   ngOnInit() {
+    this.form = this.fb.group({
+      roomNumber: [this.roomNumber, []],
+      roomFloor: [this.roomFloor, []]
+  });
+  }
+
+  save() {
+    this.dialogRef.close(this.form.value);
+  }
+
+  close() {
+    this.dialogRef.close();
   }
 
 }

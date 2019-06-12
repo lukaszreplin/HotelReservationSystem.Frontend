@@ -11,6 +11,8 @@ import { RoomsComponent } from './components/rooms/rooms.component';
 import { ReservationsComponent } from './components/reservations/reservations.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AddRoomDialogComponent } from './components/rooms/dialogs/add-room-dialog/add-room-dialog.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -26,9 +28,12 @@ import { AddRoomDialogComponent } from './components/rooms/dialogs/add-room-dial
     BrowserModule,
     AppRoutingModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [AddRoomDialogComponent]
 })
 export class AppModule { }
