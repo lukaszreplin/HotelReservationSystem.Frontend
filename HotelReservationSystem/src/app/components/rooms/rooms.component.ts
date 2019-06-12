@@ -4,6 +4,7 @@ import { Room } from 'src/app/models/room';
 import { HttpClient } from '@angular/common/http';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatDialogConfig} from '@angular/material/dialog';
 import { AddRoomDialogComponent } from './dialogs/add-room-dialog/add-room-dialog.component';
+import { DataResult } from 'src/app/models/dataResult';
 
 @Component({
   selector: 'app-rooms',
@@ -26,10 +27,13 @@ export class RoomsComponent implements OnInit {
 
   ngOnInit() {
     this.paginator._intl.itemsPerPageLabel = 'Elementów na stronie:';
-    this.httpClient.get('http://localhost:64780/api/Room').subscribe((res: Room[]) => {
-      this.dataSource = new MatTableDataSource<Room>(res);
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
+    this.httpClient.get('http://localhost:64780/api/Room').subscribe((res: DataResult) => {
+      if (res.success) {
+        this.dataSource = new MatTableDataSource<Room>(res.data);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      }
+      
     })
   }
 
