@@ -9,6 +9,8 @@ import { MainComponent } from './components/main/main.component';
 import { MyReservationsComponent } from './components/my-reservations/my-reservations.component';
 import { RoomsComponent } from './components/rooms/rooms.component';
 import { ReservationsComponent } from './components/reservations/reservations.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AddRoomDialogComponent } from './components/rooms/dialogs/add-room-dialog/add-room-dialog.component';
 
 @NgModule({
   declarations: [
@@ -17,12 +19,14 @@ import { ReservationsComponent } from './components/reservations/reservations.co
     MainComponent,
     MyReservationsComponent,
     RoomsComponent,
-    ReservationsComponent
+    ReservationsComponent,
+    AddRoomDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
