@@ -16,6 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { NotificationService } from './services/notification.service';
 import { EditRoomDialogComponent } from './components/rooms/dialogs/edit-room-dialog/edit-room-dialog.component';
+import { AddReservationDialogComponent } from './components/reservations/dialogs/add-reservation-dialog/add-reservation-dialog.component';
+import { EditReservationDialogComponent } from './components/reservations/dialogs/edit-reservation-dialog/edit-reservation-dialog.component';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import { EditRoomDialogComponent } from './components/rooms/dialogs/edit-room-di
     RoomsComponent,
     ReservationsComponent,
     AddRoomDialogComponent,
-    EditRoomDialogComponent
+    EditRoomDialogComponent,
+    AddReservationDialogComponent,
+    EditReservationDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -42,6 +46,7 @@ import { EditRoomDialogComponent } from './components/rooms/dialogs/edit-room-di
   ],
   providers: [NotificationService],
   bootstrap: [AppComponent],
-  entryComponents: [AddRoomDialogComponent, EditRoomDialogComponent]
+  entryComponents: [AddRoomDialogComponent, EditRoomDialogComponent,
+  AddReservationDialogComponent, EditReservationDialogComponent]
 })
 export class AppModule { }

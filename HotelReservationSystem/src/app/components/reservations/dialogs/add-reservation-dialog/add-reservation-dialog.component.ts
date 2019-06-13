@@ -1,6 +1,9 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Room } from 'src/app/models/room';
+import { HttpClient } from '@angular/common/http';
+import { DataResult } from 'src/app/models/dataResult';
 
 @Component({
   selector: 'app-add-reservation-dialog',
@@ -10,17 +13,30 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class AddReservationDialogComponent implements OnInit {
 
   form: FormGroup;
-  roomNumber: string;
-  roomFloor: number;
+  number: string;
+  from: Date;
+  to: Date;
+  room: Room;
+
+  rooms: Room[];
 
   constructor(private fb: FormBuilder,
-    private dialogRef: MatDialogRef<AddReservationDialogComponent>) { 
+    private dialogRef: MatDialogRef<AddReservationDialogComponent>,
+    private httpClient: HttpClient) { 
     }
 
   ngOnInit() {
+    this.httpClient.get('http://localhost:64780/api/Room').subscribe((res: DataResult) => {
+      if (res.success) {
+        this.rooms = res.data;
+      }
+    });
+
     this.form = this.fb.group({
-      roomNumber: [this.roomNumber, []],
-      roomFloor: [this.roomFloor, []]
+      number: [this.number, []],
+      from: [this.from, []],
+      to: [this.to, []],
+      room: [this.room, []]
   });
   }
 

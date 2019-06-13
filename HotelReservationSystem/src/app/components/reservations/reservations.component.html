@@ -38,7 +38,7 @@
 
           <ng-container matColumnDef="room.number">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Pokój </mat-header-cell>
-            <mat-cell *matCellDef="let reservation"> {{reservation.room.number}} </mat-cell>
+            <mat-cell *matCellDef="let reservation"> {{(reservation.room == null ? '' : reservation.room.number)}} </mat-cell>
           </ng-container>
       
           <ng-container matColumnDef="operations">

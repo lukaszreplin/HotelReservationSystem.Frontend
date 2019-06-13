@@ -1,17 +1,36 @@
-<h2 mat-dialog-title>Dodawanie nowego pokoju</h2>
+<h2 mat-dialog-title>Dodawanie nowej rezerwacji</h2>
 
 <mat-dialog-content [formGroup]="form">
   
     <mat-form-field>
         <input matInput
-                placeholder="Numer pokoju"
-               formControlName="roomNumber">
+                placeholder="Numer rezerwacji"
+               formControlName="number">
     </mat-form-field>
     <br/>
     <mat-form-field>
-        <input matInput input-type="number"
-                placeholder="Piętro"
-               formControlName="roomFloor">
+        <input matInput [matDatepicker]="fromPicker"
+                placeholder="Wybierz datę przyjazdu"
+               formControlName="from">
+        <mat-datepicker-toggle matSuffix [for]="fromPicker"></mat-datepicker-toggle>
+        <mat-datepicker #fromPicker></mat-datepicker>
+    </mat-form-field>
+    <br/>
+    <mat-form-field>
+        <input matInput [matDatepicker]="toPicker"
+                placeholder="Wybierz datę wyjazdu"
+               formControlName="to">
+        <mat-datepicker-toggle matSuffix [for]="toPicker"></mat-datepicker-toggle>
+        <mat-datepicker #toPicker></mat-datepicker>
+    </mat-form-field>
+    <br/>
+    <mat-form-field>
+        <mat-label>Wybierz pokój</mat-label>
+        <mat-select formControlName="room">
+          <mat-option *ngFor="let room of rooms" [value]="room">
+            {{room.number}}
+          </mat-option>
+        </mat-select>
     </mat-form-field>
  
 </mat-dialog-content>
