@@ -16,9 +16,9 @@
           <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>      
       
-          <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
-            <mat-cell *matCellDef="let reservation"> {{reservation.id}} </mat-cell>
+          <ng-container matColumnDef="client">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Klient </mat-header-cell>
+            <mat-cell *matCellDef="let reservation"> {{(reservation.client == null ? '' : (reservation.client.firstname + ' ' + reservation.client.lastname))}} </mat-cell>
           </ng-container>
       
           <ng-container matColumnDef="number">

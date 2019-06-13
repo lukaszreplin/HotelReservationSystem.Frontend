@@ -3,6 +3,15 @@
 <mat-dialog-content [formGroup]="form">
   
     <mat-form-field>
+        <mat-label>Wybierz klienta</mat-label>
+        <mat-select formControlName="client">
+          <mat-option *ngFor="let client of clients" [value]="client">
+            {{client.firstname}} {{client.lastname}}
+          </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br/>
+    <mat-form-field>
         <input matInput
                 placeholder="Numer rezerwacji"
                formControlName="number">

@@ -18,7 +18,7 @@ export class ReservationsComponent implements OnInit {
 
   dataSource: MatTableDataSource<Reservation>;
 
-  displayedColumns = ['id', 'number', 'from', 'to', 'room.number', 'operations'];
+  displayedColumns = ['client', 'number', 'from', 'to', 'room.number', 'operations'];
   pageSize = 4;
   
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -51,7 +51,7 @@ export class ReservationsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
         data => {
           this.httpClient.post('http://localhost:64780/api/Reservation', 
-          { 'Number': data.number, 'From': data.from, 'To': data.to, 'Room': data.room }).subscribe((res: DataResult) => {
+          { 'Client': data.client, 'Number': data.number, 'From': data.from, 'To': data.to, 'Room': data.room }).subscribe((res: DataResult) => {
           if (res.success) {
             this.notificationService.Success('Dodano rezerwację');
             this.refreshData();
