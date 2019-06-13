@@ -18,6 +18,9 @@ import { NotificationService } from './services/notification.service';
 import { EditRoomDialogComponent } from './components/rooms/dialogs/edit-room-dialog/edit-room-dialog.component';
 import { AddReservationDialogComponent } from './components/reservations/dialogs/add-reservation-dialog/add-reservation-dialog.component';
 import { EditReservationDialogComponent } from './components/reservations/dialogs/edit-reservation-dialog/edit-reservation-dialog.component';
+import { ClientsComponent } from './components/clients/clients.component';
+import { AddClientDialogComponent } from './components/clients/dialogs/add-client-dialog/add-client-dialog.component';
+import { EditClientDialogComponent } from './components/clients/dialogs/edit-client-dialog/edit-client-dialog.component';
 
 
 @NgModule({
@@ -27,11 +30,15 @@ import { EditReservationDialogComponent } from './components/reservations/dialog
     MainComponent,
     MyReservationsComponent,
     RoomsComponent,
+    ClientsComponent,
     ReservationsComponent,
     AddRoomDialogComponent,
     EditRoomDialogComponent,
     AddReservationDialogComponent,
-    EditReservationDialogComponent
+    EditReservationDialogComponent,
+    ClientsComponent,
+    AddClientDialogComponent,
+    EditClientDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -47,6 +54,7 @@ import { EditReservationDialogComponent } from './components/reservations/dialog
   providers: [NotificationService],
   bootstrap: [AppComponent],
   entryComponents: [AddRoomDialogComponent, EditRoomDialogComponent,
-  AddReservationDialogComponent, EditReservationDialogComponent]
+  AddReservationDialogComponent, EditReservationDialogComponent,
+  AddClientDialogComponent, EditClientDialogComponent]
 })
 export class AppModule { }

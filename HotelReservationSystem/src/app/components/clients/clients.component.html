@@ -1,0 +1,60 @@
+<div>
+  <h1>Klienci</h1>
+  <div class="container">
+    <form class="example-form">
+      <mat-form-field>
+        <input id="searchPhraseInput" (keyup)="searchChanged($event)" matInput placeholder="Wyszukaj klienta">
+      </mat-form-field>
+      <button style="margin-left: 10px;" button="submit" mat-raised-button color="primary" (click)="clearInput()">
+        Wyczyść filtr
+      </button>
+    </form>
+  </div>
+    <div class="container">
+        <div class="container">
+          <div fxLayout="column" fxLayoutGap="20px" fxLayout.gt-md="row"  fxLayoutAlign="space-around center" class="content">
+              <div class="blocks">
+                  <button button="submit" mat-raised-button color="primary" (click)="openAddDialog()">
+                      <mat-icon>add</mat-icon> Dodaj nowego
+                  </button>
+              </div>
+        </div>
+    </div>
+    <br>
+    <div class="container">
+        <mat-table [style.display]="loading === false ? 'block' : 'none'" #table [dataSource]="dataSource" matSort>
+          <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>      
+      
+          <ng-container matColumnDef="id">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Id </mat-header-cell>
+            <mat-cell *matCellDef="let client"> {{client.id}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="location">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Pochodzenie / lokacja </mat-header-cell>
+            <mat-cell *matCellDef="let client"> {{client.location}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="firstname">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Imię </mat-header-cell>
+            <mat-cell *matCellDef="let client"> {{client.firstname}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="lastname">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Nazwisko </mat-header-cell>
+            <mat-cell *matCellDef="let client"> {{client.lastname}} </mat-cell>
+          </ng-container>
+      
+          <ng-container matColumnDef="operations">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Operacje </mat-header-cell>
+            <mat-cell *matCellDef="let client"> <button mat-button color="primary" (click)="deleteClient(client.id)"><mat-icon>delete</mat-icon>
+            </button> <button mat-button color="primary" (click)="openEditDialog(client.id)"><mat-icon>edit</mat-icon></button> </mat-cell>
+          </ng-container>
+       
+      
+        </mat-table>
+        <mat-paginator #paginator [style.display]="loading === false ? 'block' : 'none'" [pageSize]="10" ></mat-paginator>
+    </div>
+  </div>
+</div>

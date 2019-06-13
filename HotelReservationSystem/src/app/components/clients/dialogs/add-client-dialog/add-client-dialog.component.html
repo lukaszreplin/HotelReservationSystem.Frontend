@@ -1,0 +1,28 @@
+<h2 mat-dialog-title>Dodawanie nowego klienta</h2>
+
+<mat-dialog-content [formGroup]="form">
+  
+    <mat-form-field>
+        <input matInput
+                placeholder="Lokalizacja"
+               formControlName="location">
+    </mat-form-field>
+    <br/>
+    <mat-form-field>
+      <input matInput
+              placeholder="Imię"
+             formControlName="firstname">
+    </mat-form-field>
+    <br/>
+    <mat-form-field>
+        <input matInput
+                placeholder="Nazwisko"
+               formControlName="lastname">
+    </mat-form-field>
+ 
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-raised-button"(click)="close()">Anuluj</button>
+    <button class="mat-raised-button mat-primary"(click)="save()">Zapisz</button>
+</mat-dialog-actions>
