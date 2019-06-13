@@ -34,7 +34,7 @@
           <ng-container matColumnDef="operations">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Operacje </mat-header-cell>
             <mat-cell *matCellDef="let room"> <button mat-button color="primary" (click)="deleteRoom(room.id)"><mat-icon>delete</mat-icon>
-            </button> <button mat-button color="primary" (click)="editRoom(room.id)"><mat-icon>edit</mat-icon></button> </mat-cell>
+            </button> <button mat-button color="primary" (click)="openEditDialog(room.id)"><mat-icon>edit</mat-icon></button> </mat-cell>
           </ng-container>
        
       

@@ -12,6 +12,10 @@ import { ReservationsComponent } from './components/reservations/reservations.co
 import { HttpClientModule } from '@angular/common/http';
 import { AddRoomDialogComponent } from './components/rooms/dialogs/add-room-dialog/add-room-dialog.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { NotificationService } from './services/notification.service';
+import { EditRoomDialogComponent } from './components/rooms/dialogs/edit-room-dialog/edit-room-dialog.component';
 
 
 @NgModule({
@@ -23,6 +27,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     RoomsComponent,
     ReservationsComponent,
     AddRoomDialogComponent,
+    EditRoomDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -30,10 +35,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MaterialModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
+    
   ],
-  providers: [],
+  providers: [NotificationService],
   bootstrap: [AppComponent],
-  entryComponents: [AddRoomDialogComponent]
+  entryComponents: [AddRoomDialogComponent, EditRoomDialogComponent]
 })
 export class AppModule { }
