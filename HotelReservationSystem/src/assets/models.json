@@ -1,0 +1,32 @@
+
+    {
+        "_id" : "string",
+        "client" : {
+            "_id" : "GUID",
+            "location" : "string",
+            "firstname" : "string",
+            "lastname" : "string"
+        },
+        "number" : "string",
+        "from" : "ISODate",
+        "to" : "ISODate",
+        "room" : {
+            "_id" : "GUID",
+            "number" : "string",
+            "floor" : "number"
+        }
+    }
+
+
+    {
+        "_id" : "GUID",
+        "number" : "string",
+        "floor" : "number"
+    }
+
+    {
+        "_id" : "GUID",
+        "location" : "string",
+        "firstname" : "string",
+        "lastname" : "string"
+    }
