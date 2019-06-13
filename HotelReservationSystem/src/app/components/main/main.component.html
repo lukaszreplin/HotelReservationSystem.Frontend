@@ -1,30 +1,4 @@
-<div class="mat-elevation-z8">
-  <mat-table [style.display]="loading === false ? 'block' : 'none'" #table [dataSource]="dataSource" matSort>
-    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>      
-
-    <ng-container matColumnDef="id">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Numer rezerwacji </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="name">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Pokój </mat-header-cell>
-      <mat-cell *matCellDef="let customer"> {{customer.name}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="job">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Stan rezerwacji </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.job}} </mat-cell>
-    </ng-container>
-
-    <ng-container matColumnDef="operations">
-      <mat-header-cell *matHeaderCellDef mat-sort-header> Operacje </mat-header-cell>
-      <mat-cell *matCellDef="let element"> <button mat-button color="primary" (click)="deleteCustomer(element.id)"><mat-icon>delete</mat-icon>
-      </button> <button mat-button color="primary" (click)="editCustomer(element.id)"><mat-icon>edit</mat-icon></button> </mat-cell>
-    </ng-container>
- 
-
-  </mat-table>
-  <mat-paginator  #paginator [style.display]="loading === false ? 'block' : 'none'" [pageSize]="5" ></mat-paginator>
-</div>
+<h3>
+  Witam na stronie aplikacji do tworzenia rezerwacji hotelowych! Aplikacja umożliwia zarządzanie bazą klientów oraz pokoi hotelowych oraz umożliwia tworzenie rezerwacji na podstawie
+   wybranego klienta oraz pokoju.
+</h3>
