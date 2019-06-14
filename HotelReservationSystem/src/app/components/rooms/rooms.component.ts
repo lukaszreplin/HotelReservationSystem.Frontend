@@ -35,7 +35,7 @@ export class RoomsComponent implements OnInit {
   }
 
   refreshData() {
-    this.httpClient.get('http://localhost:64780/api/Room').subscribe((res: DataResult) => {
+    this.httpClient.get('http://localhost:8080/api/Room').subscribe((res: DataResult) => {
       if (res.success) {
         this.dataSource = new MatTableDataSource<Room>(res.data);
         this.dataSource.paginator = this.paginator;
@@ -58,7 +58,7 @@ export class RoomsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
         data => {
           console.info(data.roomNumber);
-          this.httpClient.post('http://localhost:64780/api/Room', { 'Number': data.roomNumber, 'Floor': data.roomFloor }).subscribe((res: DataResult) => {
+          this.httpClient.post('http://localhost:8080/api/Room', { 'Number': data.roomNumber, 'Floor': data.roomFloor }).subscribe((res: DataResult) => {
           if (res.success) {
             this.notificationService.Success('Dodano pokój');
             this.refreshData();
@@ -71,7 +71,7 @@ export class RoomsComponent implements OnInit {
   }
 
   deleteRoom(roomId: string) {
-    this.httpClient.delete('http://localhost:64780/api/Room/' + roomId).subscribe((res: DataResult) => {
+    this.httpClient.delete('http://localhost:8080/api/Room/' + roomId).subscribe((res: DataResult) => {
       if (res.success) {
         this.notificationService.Success('Usunięto pokój');
         this.refreshData();
@@ -86,14 +86,14 @@ export class RoomsComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
 
-    this.httpClient.get('http://localhost:64780/api/Room/' + roomId).subscribe((res: DataResult) => {
+    this.httpClient.get('http://localhost:8080/api/Room/' + roomId).subscribe((res: DataResult) => {
       if (res.success) {
         
         const dialogRef = this.dialog.open(EditRoomDialogComponent, dialogConfig);
         dialogRef.componentInstance.roomModel = res.data;
           dialogRef.afterClosed().subscribe(
           data => {
-          this.httpClient.put('http://localhost:64780/api/Room/' + roomId, { 'Number': data.roomNumber, 'Floor': data.roomFloor }).subscribe((res: DataResult) => {
+          this.httpClient.put('http://localhost:8080/api/Room/' + roomId, { 'Number': data.roomNumber, 'Floor': data.roomFloor }).subscribe((res: DataResult) => {
           if (res.success) {
             this.notificationService.Success('Edytowano pokój');
             this.refreshData();

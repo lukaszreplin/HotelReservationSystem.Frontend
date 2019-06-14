@@ -34,7 +34,7 @@ export class ClientsComponent implements OnInit {
 
   refreshData(phrase = '') {
     if (phrase.length < 1) {
-      this.httpClient.get('http://localhost:64780/api/Client').subscribe((res: DataResult) => {
+      this.httpClient.get('http://localhost:8080/api/Client').subscribe((res: DataResult) => {
         if (res.success) {
           this.dataSource = new MatTableDataSource<Client>(res.data);
           this.dataSource.paginator = this.paginator;
@@ -43,7 +43,7 @@ export class ClientsComponent implements OnInit {
         
       });
     } else {
-      this.httpClient.get('http://localhost:64780/api/Client/Search/' + phrase).subscribe((res: DataResult) => {
+      this.httpClient.get('http://localhost:8080/api/Client/Search/' + phrase).subscribe((res: DataResult) => {
         if (res.success) {
           this.dataSource = new MatTableDataSource<Client>(res.data);
           this.dataSource.paginator = this.paginator;
@@ -64,7 +64,7 @@ export class ClientsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(
         data => {
           console.info(data.roomNumber);
-          this.httpClient.post('http://localhost:64780/api/Client', { 'Location': data.location, 'Firstname': data.firstname,
+          this.httpClient.post('http://localhost:8080/api/Client', { 'Location': data.location, 'Firstname': data.firstname,
         'Lastname': data.lastname }).subscribe((res: DataResult) => {
           if (res.success) {
             this.notificationService.Success('Dodano klienta');
@@ -78,7 +78,7 @@ export class ClientsComponent implements OnInit {
   }
 
   deleteClient(clientId: string) {
-    this.httpClient.delete('http://localhost:64780/api/Client/' + clientId).subscribe((res: DataResult) => {
+    this.httpClient.delete('http://localhost:8080/api/Client/' + clientId).subscribe((res: DataResult) => {
       if (res.success) {
         this.notificationService.Success('Usunięto klienta');
         this.refreshData();
@@ -93,14 +93,14 @@ export class ClientsComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
 
-    this.httpClient.get('http://localhost:64780/api/Client/' + clientId).subscribe((res: DataResult) => {
+    this.httpClient.get('http://localhost:8080/api/Client/' + clientId).subscribe((res: DataResult) => {
       if (res.success) {
         
         const dialogRef = this.dialog.open(EditClientDialogComponent, dialogConfig);
         dialogRef.componentInstance.clientModel = res.data;
           dialogRef.afterClosed().subscribe(
           data => {
-          this.httpClient.put('http://localhost:64780/api/Client/' + clientId, { 'Location': data.location, 'Firstname': data.firstname,
+          this.httpClient.put('http://localhost:8080/api/Client/' + clientId, { 'Location': data.location, 'Firstname': data.firstname,
         'Lastname': data.lastname }).subscribe((res: DataResult) => {
           if (res.success) {
             this.notificationService.Success('Edytowano klienta');
@@ -128,7 +128,7 @@ export class ClientsComponent implements OnInit {
   }
 
   clearInput() {
-    document.getElementById('searchPhraseInput').value = '';
+    (<HTMLInputElement>document.getElementById('searchPhraseInput')).value = '';
     this.searchChanged(null);
   }
 

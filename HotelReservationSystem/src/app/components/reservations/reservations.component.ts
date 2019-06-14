@@ -33,7 +33,7 @@ export class ReservationsComponent implements OnInit {
   }
 
   refreshData() {
-    this.httpClient.get('http://localhost:64780/api/Reservation').subscribe((res: DataResult) => {
+    this.httpClient.get('http://localhost:8080/api/Reservation').subscribe((res: DataResult) => {
       if (res.success) {
         this.dataSource = new MatTableDataSource<Reservation>(res.data);
         this.dataSource.paginator = this.paginator;
@@ -50,7 +50,7 @@ export class ReservationsComponent implements OnInit {
     const dialogRef = this.dialog.open(AddReservationDialogComponent, dialogConfig);
     dialogRef.afterClosed().subscribe(
         data => {
-          this.httpClient.post('http://localhost:64780/api/Reservation', 
+          this.httpClient.post('http://localhost:8080/api/Reservation', 
           { 'Client': data.client, 'Number': data.number, 'From': data.from, 'To': data.to, 'Room': data.room }).subscribe((res: DataResult) => {
           if (res.success) {
             this.notificationService.Success('Dodano rezerwację');
@@ -64,7 +64,7 @@ export class ReservationsComponent implements OnInit {
   }
 
   deleteReservation(reservationId: string) {
-    this.httpClient.delete('http://localhost:64780/api/Reservation/' + reservationId).subscribe((res: DataResult) => {
+    this.httpClient.delete('http://localhost:8080/api/Reservation/' + reservationId).subscribe((res: DataResult) => {
       if (res.success) {
         this.notificationService.Success('Usunięto rezerwację');
         this.refreshData();
@@ -79,14 +79,14 @@ export class ReservationsComponent implements OnInit {
     dialogConfig.disableClose = false;
     dialogConfig.autoFocus = true;
 
-    this.httpClient.get('http://localhost:64780/api/Reservation/' + reservationId).subscribe((res: DataResult) => {
+    this.httpClient.get('http://localhost:8080/api/Reservation/' + reservationId).subscribe((res: DataResult) => {
       if (res.success) {
         
         const dialogRef = this.dialog.open(EditReservationDialogComponent, dialogConfig);
         dialogRef.componentInstance.reservationModel = res.data;
           dialogRef.afterClosed().subscribe(
           data => {
-          this.httpClient.put('http://localhost:64780/api/Reservation/' + reservationId, 
+          this.httpClient.put('http://localhost:8080/api/Reservation/' + reservationId, 
           { 'Number': data.number, 'From': data.from, 'To': data.to, 'Room': data.room }).subscribe((res: DataResult) => {
           if (res.success) {
             this.notificationService.Success('Edytowano rezerwację');
